@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <!-- La comunidad es privada: nada de esto debe aparecer en buscadores -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="referrer" content="same-origin" />
+    <meta name="color-scheme" content="light" />
+    <!-- FASE 13 · PWA: el color de barra es el fondo real de la app (antes era un
+         azul viejo que no correspondía a la paleta pino/ámbar). -->
+    <meta name="theme-color" content="#faf7f0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ADYP" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!--
+      A diferencia de la app actual, aquí NO hay ninguna clave en el HTML.
+      Ni credenciales, ni clave de SMS. La única excepción es la clave del mapa, que
+      por cómo funciona Google Maps tiene que viajar al navegador: va en .env, se
+      restringe por dominio en Google Cloud y es la misma que ya usa la web actual
+      (ver README, sección «El mapa»).
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.ggpht.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com; connect-src 'self' https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.ggpht.com https://*.google.com; font-src 'self' data: https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+
+    <!-- frame-ancestors y X-Frame-Options van en las CABECERAS HTTP del hosting (ver README),
+         no caben en una etiqueta meta: el navegador los ignoraría aquí. -->
+    <title>ADYP · A disfrutar y punto</title>
+    <meta name="description" content="Acceso privado para miembros de la comunidad ADYP." />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- El logo (splash y tarjeta) se precarga: la animación no puede empezar a medias. -->
+  <link rel="preload" as="image" href="/img/logo-Logo.png" />
+
+    <!-- Las dos fuentes que se pintan en la primera pantalla, precargadas.
+         Van en el propio dominio (no en un CDN): la CSP se queda en font-src 'self'
+         y no le contamos a ningún tercero quién visita la web. -->
+    <link rel="preload" href="/fonts/jakarta-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/outfit-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="module" crossorigin src="/assets/index-BbhyA3V1.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cl536Zhv.css">
+    <link rel="stylesheet" href="/assets/adyp-mobile-ui-c26aa4e4bd56.css" />
+    <script defer src="/assets/adyp-mobile-ui-68a2e19014d8.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript
+      >ADYP necesita JavaScript. Si no puedes activarlo, pide tu quedada por los cauces de siempre.</noscript
+    >
+  </body>
+</html>

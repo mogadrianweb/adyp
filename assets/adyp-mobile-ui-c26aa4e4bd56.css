@@ -1,0 +1,90 @@
+/* ADYP mobile-sheet refinement v2.
+   Scoped to existing filter, proposal, rules and join-confirmation dialogs only.
+   Existing button, chip, form, colour and route styles are deliberately untouched. */
+.adyp-sheet-handle { display: none; }
+
+@media (max-width: 699px) {
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet] {
+    height: auto;
+    max-height: min(var(--adyp-sheet-peek, 68dvh), calc(100dvh - env(safe-area-inset-top, 0px) - 8px));
+    transition: max-height .28s cubic-bezier(.22, .8, .22, 1);
+  }
+
+  .modal-fondo:not(.centro) .modal[data-adyp-kind="filters"] {
+    --adyp-sheet-peek: 57dvh;
+    --adyp-sheet-full: 88dvh;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-kind="form"] {
+    --adyp-sheet-peek: 78dvh;
+    --adyp-sheet-full: 94dvh;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-kind="info"] {
+    --adyp-sheet-peek: 62dvh;
+    --adyp-sheet-full: 88dvh;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-kind="detail"] {
+    --adyp-sheet-peek: 68dvh;
+    --adyp-sheet-full: 93dvh;
+  }
+
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet][data-adyp-detent="expanded"] {
+    max-height: min(var(--adyp-sheet-full, 92dvh), calc(100dvh - env(safe-area-inset-top, 0px) - 8px));
+  }
+
+  /* Replace only the decorative grip on eligible sheets with its accessible button equivalent.
+     The handle occupies the same vertical space; it does not enlarge the dialog. */
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet]::before {
+    content: none;
+    display: none;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet] > .adyp-sheet-handle {
+    display: flex;
+    flex: 0 0 16px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 16px;
+    min-width: 0;
+    min-height: 16px;
+    margin: 0 0 12px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: transparent;
+    box-shadow: none;
+    font-size: 0;
+    line-height: 0;
+    cursor: grab;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet] > .adyp-sheet-handle:active {
+    cursor: grabbing;
+  }
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet] > .adyp-sheet-handle:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--adyp, #00879a) 42%, transparent);
+    outline-offset: -2px;
+  }
+  .adyp-sheet-grip {
+    display: block;
+    width: 36px;
+    height: 4px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--border-color, var(--linea, #d8dfe8));
+    transition: width .18s ease, background-color .18s ease;
+  }
+  .adyp-sheet-handle:hover .adyp-sheet-grip,
+  .adyp-sheet-handle[aria-expanded="true"] .adyp-sheet-grip {
+    width: 42px;
+    background: var(--accent-color, var(--adyp, #00879a));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-fondo:not(.centro) .modal[data-adyp-sheet] {
+    transition: none;
+  }
+  .adyp-sheet-grip { transition: none; }
+}
